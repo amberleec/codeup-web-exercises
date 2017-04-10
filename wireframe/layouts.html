@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Layouts</title>
+    <style>
+       * {
+           margin:0;
+           padding: 0;
+           box-sizing: border-box;
+       }
+
+       /* Grid System */
+
+       .column-1 {
+           width: 33%;
+           float: left;
+       }
+
+       .column-2 {
+           width: 66%;
+           float: left;
+       }
+
+        .row {
+            clear: both; /* clear fix */
+            overflow: auto;
+            /* border: 1px solid red; /* debugging statement */
+        }
+
+    </style>
+</head>
+<body>
+    <main>
+        <article class="row column-2">
+            <h1>Title</h1>
+            <section class="column-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque exercitationem, explicabo illum laborum natus officiis placeat sapiente temporibus veritatis vitae? Alias ea laborum placeat possimus praesentium! Accusamus animi beatae cumque enim eveniet ipsa laboriosam, maiores maxime minus, neque nulla odio quasi qui quisquam repellat reprehenderit repudiandae sed vero voluptatem voluptates!</section>
+            <section class="column-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad aut consequuntur cum cumque dicta doloribus ducimus eum excepturi, facere, fugit inventore ipsam iure libero maiores, minima natus nemo nostrum obcaecati quia quo quos rerum sint veritatis voluptate. Blanditiis eligendi enim sunt! At, consequuntur culpa officia provident unde reprehenderit repudiandae voluptate voluptatibus?</section>
+            <section class="column-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet asperiores blanditiis corporis doloremque doloribus fugiat fugit in incidunt, iure labore laboriosam nisi non nulla quam quasi quo suscipit, vero voluptates.</section>
+        </article>
+        <aside class="column-1">
+            <h2>Sub-Title</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos doloribus eius fuga, natus odio officia.</p>
+        </aside>
+    </main>
+</body>
+</html>

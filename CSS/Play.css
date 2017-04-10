@@ -1,0 +1,40 @@
+body {
+    background-color: darkslategray;
+}
+
+#first {
+    background-color: darkgrey;
+    color: greenyellow;
+}
+
+#second {
+    background-color: cadetblue;
+    color: aquamarine;
+
+}
+
+#third {
+    background-color: darkkhaki;
+    color: aqua;
+}
+
+.boxes {
+    width: 150px;
+    height: 150px;
+    text-align: center;
+    font-family: "Comic Sans MS";
+    font-style: oblique;
+}
+
+.borders {
+    border: 2px solid black;
+}
+
+#name {
+    color: deepskyblue;
+    text-align: left;
+    text-indent: 10px;
+    font-size: xx-large;
+    font-family: "American Typewriter";
+    font-style: oblique;
+}

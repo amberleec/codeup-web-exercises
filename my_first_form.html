@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My First HTML Form</title>
+</head>
+<body>
+    <form method="POST" action="http://requestb.in/1kn3c9w1">
+
+        <label for="lname">Last Name</label>
+        <input id="lname" name="last_name" type="text" placeholder="Enter Last Name">
+        <br>
+        <label for="Age">Age</label>
+        <input id="Age" name="Age" type="text" placeholder="Enter Age">
+        <br>
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" placeholder="Enter Password">
+        <br>
+        <p>What is your favourite color?</p>
+        <label for="green">Green</label>
+        <input type="checkbox" name="color" value="green">
+
+        <label for="Pink">Pink</label>
+        <input type="checkbox" name="color" value="Pink">
+
+        <label for="Orange">Orange</label>
+        <input type="checkbox" name="color" value="Orange">
+
+        <p>What day is it?</p>
+        <label for="monday">Monday</label>
+        <input id="monday" type="radio" name="day" value="1">
+
+        <label for="tuesday">Tuesday</label>
+        <input id="tuesday" type="radio" name="day" value="2">
+
+        <label for="wednesday">Wednesday</label>
+        <input id="wednesday" type="radio" name="day" value="3">
+
+        <label for="thursday">Thursday</label>
+        <input id="thursday" type="radio" name="day" value="4">
+
+        <label for="friday">Friday</label>
+        <input id="friday" type="radio" name="day" value="5">
+
+        <label for="saturday">Saturday</label>
+        <input id="saturday" type="radio" name="day" value="6">
+
+        <label for="sunday">Sunday</label>
+        <input id="sunday" type="radio" name="day" value="7">
+
+        <br>
+        <label for="address">Address</label>
+        <br>
+        <textarea name="address" id="address" cols="30" rows="10"></textarea>
+
+        <br>
+
+        <label for="consoles">Consoles</label>
+        <select name="console" id="consoles">
+            <option value="ps4">PS4</option>
+            <option value="xbox1">XBOX One</option>
+            <option value="switch">Nintendo Switch</option>
+            <option value="wii">WII</option>
+            <option value="gamecube">Game Cube</option>
+        </select>
+
+        <br><br>
+        <!--<input type="submit" value="Send>-->
+        <button>Login</button>
+
+        <input type="hidden" name="ssn" value="1234">
+
+    </form>
+</body>
+</html>
