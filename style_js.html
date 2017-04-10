@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <script>
+            var luckyNumber = Math.floor(Math.random()* 6)
+            var purchase = 60;
+            var total;
+
+            switch (luckyNumber){
+                case 1:
+                    console.log("You got a 10% discount");
+                    var total = purchase - (purchase * 0.10);
+                    break;
+
+                case 2:
+                    console.log("You got a 25% discount");
+                    var total = purchase - (purchase * 0.25);
+                    break;
+                case 4:
+                    console.log("You got a 50% discount");
+                    var total = purchase - (purchase * 0.50);
+                    break;
+                case 5:
+                    console.log("You got a free purchase");
+                    var total = 0
+                    break;
+                default:
+                    total = purchase
+                    console.log("You did not get a discount :(")
+            }
+
+            console.log("Total: $" + total.toFixed(2))
+
+
+            'use strict';
+
+            var numbers = "I represent months of the year";
+
+            switch (typeof numbers) {
+                case 1:
+                    console.log("January");
+                    break;
+                case 2:
+                    console.log("Febuary");
+                    break;
+                case 3:
+                    console.log("March");
+                    break;
+                case 4:
+                    console.log("April")
+                case 5:
+                    console.log("May");
+                    break;
+                case 6:
+                    console.log("June");
+                    break;
+                case 7:
+                    console.log("July")
+                    break;
+                case 8:
+                    console.log("August")
+                    break;
+                case 9:
+                    console.log("September")
+                    break;
+                case 10:
+                    console.log("October")
+                    break;
+                case 11:
+                    console.log("November")
+                    break;
+                case 12:
+                    console.log("December")
+                default:
+                    console.log("Months");
+            }
+
+
+        </script>
+    </body>
+</html>
