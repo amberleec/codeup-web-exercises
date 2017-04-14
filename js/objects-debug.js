@@ -82,7 +82,7 @@ console.log(pizza.crust);
      console.log('Toppings');
      // output all the toppings for the order
      order.toppings.forEach(function (topping) {
-         console.log('- ' + topping);
+         console.log(' - ' + topping);
      });
 
      console.log('Crust: ' + order.crust);
