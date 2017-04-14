@@ -40,7 +40,7 @@
 
     console.log('Finding and logging the index of "Earth" in the planets array.');
     // TODO: Read the console.log() statement above. Write code to perform the step it describes.
-    var planetAfterEarth = indexOfEarth +1;
+    var planetAfterEarth = indexOfEarth +1;]
     planets.splice(planetAfterEarth, 1)
 
 
