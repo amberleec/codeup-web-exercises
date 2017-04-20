@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+        #map-canvas {
+            width: 770px;
+            height: 481px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="map-canvas"></div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcICXm_TqVlop_BF1o7YS3bzSyF789-lw
+    "></script>
+
+<script type="text/javascript">
+    (function () {
+        "use strict";
+        var codeup = {
+            lat: 29.426791,
+            lng: -98.489602
+        }
+        var mapOptions = {
+            zoom: 15,
+
+            center: codeup
+        };
+
+        var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+        var codeupMarker = new google.maps.Marker({
+            position: codeup,
+            map: map
+        });
+
+        function addOpenWindowListener(infowindow, marker) {
+            var listener = marker.addListener('click', function() {
+
+
+                infowindow.open(map, marker);
+
+                google.maps.event.removeListener(listener);
+                addCloseWindowListener(infowindow, marker);
+            });
+        }
+
+        function addCloseWindowListener(infowindow, marker) {
+            var listener = marker.addListener('click', function() {
+
+                infowindow.close();
+
+                google.maps.event.removeListener(listener);
+                addOpenWindowListener(infowindow, marker);
+            });
+        }
+        var codeupInfowindow = new google.maps.InfoWindow({
+            content: "<h1>Codeup</h1> Their full-stack program is a 4-month, in-person career accelerator that turns beginners into entry-level software developers."
+        });
+        addOpenWindowListener(codeupInfowindow, codeupMarker);
+        // Include code from previous example
+
+        // Set our address to geocode
+        var address = "203 S St Mary's St #170, San Antonio, TX 78205";
+
+// Init geocoder object
+        var geocoder = new google.maps.Geocoder();
+
+// Geocode our address
+        geocoder.geocode({"address": address}, function (results, status) {
+
+            // Check for a successful result
+            if (status == google.maps.GeocoderStatus.OK) {
+
+                // Recenter the map over the address
+                map.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker({
+                    position: results[0].geometry.location,
+                    map: map
+                });
+
+                var infowindow = new google.maps.InfoWindow({
+                    content: "<h1>Sushi Zushi</h1> Sushi Zushi fuses Japanese traditions with modern tastes. The Lincoln Heights Roll is definetly recommended!"
+                });
+                addOpenWindowListener(infowindow, marker);
+// Open the window using our map and marker
+            } else {
+
+                // Show an error message with the status if our request fails
+                alert("Geocoding was not successful - STATUS: " + status);
+            }
+        });
+    })();
+</script>
+</body>

@@ -27,6 +27,24 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcICXm_TqVlop_BF1o7YS3bzSyF789-lw
 "></script>
 
-<script type="application/javascript"></script>
+<script type="application/javascript">
+
+    (function() {
+        "use strict";
+
+        var mapOptions = {
+
+            zoom: 19,
+
+            center: {
+                lat:  29.426791,
+                lng: -98.489602
+            }
+        };
+
+        var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+    })();
+</script>
+
 
 </body>
