@@ -12,22 +12,22 @@
         .forecastDivs {
             background-color: lightseagreen;
             height: 17  em;
-            width: 20em;
+            width: 18em;
             display: inline-block;
-            margin: 1em;
-            margin-left: 1.2em;
-            padding-top: 2em;
-            padding-left: 3.5em;
-            border: solid .3em black;
-            font-size: 1.13em;
+            margin: 4em;
+            margin-left: 1em;
+            padding-top: 1em;
+            padding-left: 3em;
+            border: solid .4em black;
+            font-size: 1em;
         }
         .container {
-            margin-left: 20em;
+            margin-left: 17em;
             margin-top: 2em;
         }
         #map {
             height: 25em;
-            width: 74em;
+            width: 64em;
         }
         #temp{
             font-size: 2em;
@@ -67,11 +67,10 @@
     $(document).ready(function(){
         var lat = 29.4241;
         var lon = -98.4936;
-        var weatherCenter = { lat: lat, lng: lon };
         var map;
         var mapDisplay = document.getElementById('map');
         var options = {
-            zoom: 4,
+            zoom: 6,
             center: {
                 lat: lat,
                 lng: lon

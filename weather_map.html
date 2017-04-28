@@ -11,31 +11,30 @@
         }
         .forecastDivs {
             background-color: lightcyan;
-            height: 17  em;
+            height: 17em;
             width: 20em;
             display: inline-block;
             margin: 1em;
             margin-left: 1.2em;
             padding-top: 2em;
-            padding-left: 3.5em;
+            padding-left: 3em;
             border: solid .3em black;
-            font-size: 1.13em;
+            font-size: 1em;
         }
         img {
             margin-top: 0;
         }
         .container {
-            margin-left: 20em;
-            margin-top: 2em;
+            margin-left: 15em;
+            margin-top: 3em;
         }
         #map {
-            height: 25em;
-            width: 74em;
-            background-color: lightblue;
-            margin-bottom: 1.5em;
+            height: 30em;
+            width: 80em;
+            margin-bottom: 1em;
         }
         #lonlat {
-            margin-left: 17em;
+            margin-left: 20em;
         }
     </style>
 </head>
@@ -67,7 +66,7 @@
         var map;
         var mapDisplay = document.getElementById('map');
         var options = {
-            zoom: 9,
+            zoom: 6,
             center: {
                 lat: lat,
                 lng: lon
