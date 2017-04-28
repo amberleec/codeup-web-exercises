@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Weather Api</title>
+    <title>Weather Marker</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <style type="text/css">
@@ -10,7 +10,7 @@
             background-color: lightblue;
         }
         .forecastDivs {
-            background-color: lightcyan;
+            background-color: lightgrey;
             height: 17  em;
             width: 20em;
             display: inline-block;
@@ -31,11 +31,16 @@
         #map {
             height: 25em;
             width: 74em;
-            background-color: lightblue;
+            background-color: lightsteelblue;
             margin-bottom: 1.5em;
         }
-        #lonlat {
-            margin-left: 17em;
+        #temp{
+            font-size: 2em;
+            font-weight: bold;
+        }
+        .titles{
+            font-weight: bold;
+            margin-right: .5em;
         }
     </style>
 </head>
@@ -50,36 +55,36 @@
         <div id="forecast2" class="forecastDivs"></div>
     </div>
     <div id="map"></div>
-    <div id="lonlat">
-        <label>Latitude</label><input id="lat" type="number" value="29.6708">
-        <label>Longitude</label><input id="lon" type="number" value="-98.4288268">
-        <button>Get Weather</button>
-    </div>
+
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=7f8e3aa0aad113510e0c1eaafd1c17b8"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDykvV2wJZcdlJ8pfHGv_iEgmPBQhqlggU"></script>
 <script>
     $(document).ready(function(){
-        var lat =  parseFloat($("#lat").val());
-        var lon = parseFloat($("#lon").val());
+        var lat = 29.4241;
+        var lon = -98.4936;
         var weatherCenter = { lat: lat, lng: lon };
         var map;
         var mapDisplay = document.getElementById('map');
         var options = {
-            zoom: 9,
+            zoom: 4,
             center: {
                 lat: lat,
                 lng: lon
-            },
+            }
         };
         function initMap() {
             map = new google.maps.Map(mapDisplay, options);
         }
         initMap();
         var marker = new google.maps.Marker({
-            position: weatherCenter,
-            map: map
+            position: {
+                lat: lat,
+                lng: lon
+            },
+            map: map,
+            draggable: true
         });
         function getWeather () {
             $.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
@@ -92,34 +97,34 @@
                 var counter = 0;
                 data.list.forEach(function (i) {
                     var forecastFill = "";
-                    forecastFill += "<p>" + parseInt(i.temp.day) + "&deg;" + "/" + parseInt(i.temp.night) + "&deg;</p>";
+                    forecastFill += "<p id='temp'>" + parseInt(i.temp.day) + "&deg;" + "/" + parseInt(i.temp.night) + "&deg;</p>";
                     forecastFill += "<img src='http://openweathermap.org/img/w/" + i.weather[0].icon + ".png'>";
-                    forecastFill += "<p>" + i.weather[0].main + ": " + i.weather[0].description + "</p>";
-                    forecastFill += "<p>Humidity: " + i.humidity + "</p>";
-                    forecastFill += "<p>Wind: " + i.speed + "</p>";
-                    forecastFill += "<p>Pressure: " + i.pressure + "</p>";
+                    forecastFill += "<p><span class='titles'>" + i.weather[0].main + ":</span>  " + i.weather[0].description + "</p>";
+                    forecastFill += "<p><span class='titles'> Humidity:</span>   " + i.humidity + "</p>";
+                    forecastFill += "<p><span class='titles'>Wind: </span>  " + i.speed + "</p>";
+                    forecastFill += "<p><span class='titles'>Pressure: </span>  " + i.pressure + "</p>";
                     var id = "#forecast" + counter;
                     $(id).html(forecastFill);
                     counter++;
                 });
                 var cityName = data.city.name;
                 $("#cityName").text(cityName);
-                console.log(data);
             }).fail(function (data) {
                 console.log(data.statusText);
             });
         }
         getWeather();
-        $("button").click(function(){
-            lat =  parseFloat($("#lat").val());
-            lon = parseFloat($("#lon").val());
-            weatherCenter = { lat: lat, lng: lon };
-            options.center.lat = lat;
+        marker.addListener('dragend', function(event){
+//        lat = marker.getPosition().lat();
+//        lon = marker.getPosition().lng();
+            lat = event.latLng.lat();
+            lon = event.latLng.lng();
             options.center.lng = lon;
-            initMap();
+            options.center.lat = lat;
             getWeather();
-        })
+        });
     });
 </script>
 </body>
 </html>
+Contact GitHub API Training Shop Blog About
