@@ -9,7 +9,7 @@
         body {
             background-color: #234AFB;
         }
-        .forecastDivs {
+        .divsFrcst {
             background-color: lightseagreen;
             height: 17  em;
             width: 18em;
@@ -32,12 +32,12 @@
         #temp{
             font-size: 2em;
             font-weight: 700;
-            font-family: sans-serif;
+            font-family: "Comic Sans MS";
         }
         .titles{
             font-weight: bold;
             margin-right: .17em;
-            font-family: Helvetica;
+            font-family: "Comic Sans MS";
         }
         h1 {
             font-family: "Comic Sans MS";
@@ -52,10 +52,10 @@
     <h1>Weather Application</h1>
     <h3 id="cityName"></h3>
     <div id="threeDays" class="row">
-        <div id="forecast0" class="forecastDivs">
+        <div id="forecast0" class="divsFrcst">
         </div>
-        <div id="forecast1" class="forecastDivs"></div>
-        <div id="forecast2" class="forecastDivs"></div>
+        <div id="forecast1" class="divsFrcst"></div>
+        <div id="forecast2" class="divsFrcst"></div>
     </div>
     <div id="map"></div>
 
@@ -70,7 +70,7 @@
         var map;
         var mapDisplay = document.getElementById('map');
         var options = {
-            zoom: 6,
+            zoom: 7,
             center: {
                 lat: lat,
                 lng: lon
@@ -98,15 +98,15 @@
             }).done(function (data) {
                 var counter = 0;
                 data.list.forEach(function (i) {
-                    var forecastFill = "";
-                    forecastFill += "<p id='temp'>" + parseInt(i.temp.day) + "&deg;" + "/" + parseInt(i.temp.night) + "&deg;</p>";
-                    forecastFill += "<img src='http://openweathermap.org/img/w/" + i.weather[0].icon + ".png'>";
-                    forecastFill += "<p><span class='titles'>" + i.weather[0].main + ":</span>  " + i.weather[0].description + "</p>";
-                    forecastFill += "<p><span class='titles'> Humidity:</span>   " + i.humidity + "</p>";
-                    forecastFill += "<p><span class='titles'>Wind: </span>  " + i.speed + "</p>";
-                    forecastFill += "<p><span class='titles'>Pressure: </span>  " + i.pressure + "</p>";
+                    var fillFrcst = "";
+                    fillFrcst += "<p id='temp'>" + parseInt(i.temp.day) + "&deg;" + "/" + parseInt(i.temp.night) + "&deg;</p>";
+                    fillFrcst += "<img src='http://openweathermap.org/img/w/" + i.weather[0].icon + ".png'>";
+                    fillFrcst += "<p><span class='titles'>" + i.weather[0].main + ":</span>  " + i.weather[0].description + "</p>";
+                    fillFrcst += "<p><span class='titles'> Humidity:</span>   " + i.humidity + "</p>";
+                    fillFrcst += "<p><span class='titles'>Wind: </span>  " + i.speed + "</p>";
+                    fillFrcst += "<p><span class='titles'>Pressure: </span>  " + i.pressure + "</p>";
                     var id = "#forecast" + counter;
-                    $(id).html(forecastFill);
+                    $(id).html(fillFrcst);
                     counter++;
                 });
                 var cityName = data.city.name;
