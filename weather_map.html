@@ -2,43 +2,55 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Weather Api</title>
+    <title>Weather Marker</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <style type="text/css">
         body {
-            background-color: lightblue;
+            background-color: #234AFB;
         }
         .forecastDivs {
-            background-color: lightcyan;
-            height: 17em;
-            width: 20em;
+            background-color: lightseagreen;
+            height: 17  em;
+            width: 18em;
             display: inline-block;
-            margin: 1em;
-            margin-left: 1.2em;
-            padding-top: 2em;
+            margin: 4em;
+            margin-left: 1em;
+            padding-top: 1em;
             padding-left: 3em;
-            border: solid .3em black;
+            border: solid .4em black;
             font-size: 1em;
         }
         .container {
-            margin-left: 15em;
-            margin-top: 3em;
+            margin-left: 17em;
+            margin-top: 2em;
         }
         #map {
-            height: 30em;
-            width: 80em;
-            margin-bottom: 1em;
+            height: 25em;
+            width: 64em;
         }
-        #lonlat {
-            margin-left: 20em;
+        #temp{
+            font-size: 2em;
+            font-weight: 700;
+            font-family: sans-serif;
+        }
+        .titles{
+            font-weight: bold;
+            margin-right: .17em;
+            font-family: Helvetica;
+        }
+        h1 {
+            font-family: "Comic Sans MS";
+        }
+        h3{
+            font-family: "Comic Sans MS";
         }
     </style>
 </head>
 <body>
 <div class="container">
     <h1>Weather Application</h1>
-    <h2 id="cityName"></h2>
+    <h3 id="cityName"></h3>
     <div id="threeDays" class="row">
         <div id="forecast0" class="forecastDivs">
         </div>
@@ -46,20 +58,15 @@
         <div id="forecast2" class="forecastDivs"></div>
     </div>
     <div id="map"></div>
-    <div id="lonlat">
-        <label>Latitude</label><input id="lat" type="number" value="29.6708">
-        <label>Longitude</label><input id="lon" type="number" value="-98.4288268">
-        <button>Get Weather</button>
-    </div>
+
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDykvV2wJZcdlJ8pfHGv_iEgmPBQhqlggU"></script>
 <script>
     $(document).ready(function(){
-        var lat =  parseFloat($("#lat").val());
-        var lon = parseFloat($("#lon").val());
-        var weatherCenter = { lat: lat, lng: lon };
+        var lat = 29.4241;
+        var lon = -98.4936;
         var map;
         var mapDisplay = document.getElementById('map');
         var options = {
@@ -67,15 +74,19 @@
             center: {
                 lat: lat,
                 lng: lon
-            },
+            }
         };
         function initMap() {
             map = new google.maps.Map(mapDisplay, options);
         }
         initMap();
         var marker = new google.maps.Marker({
-            position: weatherCenter,
-            map: map
+            position: {
+                lat: lat,
+                lng: lon
+            },
+            map: map,
+            draggable: true
         });
         function getWeather () {
             $.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
@@ -88,33 +99,30 @@
                 var counter = 0;
                 data.list.forEach(function (i) {
                     var forecastFill = "";
-                    forecastFill += "<p>" + parseInt(i.temp.day) + "&deg;" + "/" + parseInt(i.temp.night) + "&deg;</p>";
+                    forecastFill += "<p id='temp'>" + parseInt(i.temp.day) + "&deg;" + "/" + parseInt(i.temp.night) + "&deg;</p>";
                     forecastFill += "<img src='http://openweathermap.org/img/w/" + i.weather[0].icon + ".png'>";
-                    forecastFill += "<p>" + i.weather[0].main + ": " + i.weather[0].description + "</p>";
-                    forecastFill += "<p>Humidity: " + i.humidity + "</p>";
-                    forecastFill += "<p>Wind: " + i.speed + "</p>";
-                    forecastFill += "<p>Pressure: " + i.pressure + "</p>";
+                    forecastFill += "<p><span class='titles'>" + i.weather[0].main + ":</span>  " + i.weather[0].description + "</p>";
+                    forecastFill += "<p><span class='titles'> Humidity:</span>   " + i.humidity + "</p>";
+                    forecastFill += "<p><span class='titles'>Wind: </span>  " + i.speed + "</p>";
+                    forecastFill += "<p><span class='titles'>Pressure: </span>  " + i.pressure + "</p>";
                     var id = "#forecast" + counter;
                     $(id).html(forecastFill);
                     counter++;
                 });
                 var cityName = data.city.name;
                 $("#cityName").text(cityName);
-                console.log(data);
             }).fail(function (data) {
                 console.log(data.statusText);
             });
         }
         getWeather();
-        $("button").click(function(){
-            lat =  parseFloat($("#lat").val());
-            lon = parseFloat($("#lon").val());
-            weatherCenter = { lat: lat, lng: lon };
-            options.center.lat = lat;
+        marker.addListener('dragend', function(event){
+            lat = event.latLng.lat();
+            lon = event.latLng.lng();
             options.center.lng = lon;
-            initMap();
+            options.center.lat = lat;
             getWeather();
-        })
+        });
     });
 </script>
 </body>
