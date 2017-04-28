@@ -91,7 +91,7 @@
         });
         function getWeather () {
             $.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
-                APPID: "cf5050c0c4303753a04239e865a2dd5c",
+                APPID: "7f8e3aa0aad113510e0c1eaafd1c17b8",
                 lat: lat,
                 lon: lon,
                 units: "imperial",
@@ -118,8 +118,6 @@
         }
         getWeather();
         marker.addListener('dragend', function(event){
-//        lat = marker.getPosition().lat();
-//        lon = marker.getPosition().lng();
             lat = event.latLng.lat();
             lon = event.latLng.lng();
             options.center.lng = lon;
