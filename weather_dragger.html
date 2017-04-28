@@ -7,10 +7,10 @@
 
     <style type="text/css">
         body {
-            background-color: lightblue;
+            background-color: #234AFB;
         }
         .forecastDivs {
-            background-color: lightgrey;
+            background-color: lightseagreen;
             height: 17  em;
             width: 20em;
             display: inline-block;
@@ -21,9 +21,6 @@
             border: solid .3em black;
             font-size: 1.13em;
         }
-        img {
-            margin-top: 0;
-        }
         .container {
             margin-left: 20em;
             margin-top: 2em;
@@ -31,15 +28,22 @@
         #map {
             height: 25em;
             width: 74em;
-            background-color: lightsteelblue;
         }
         #temp{
             font-size: 2em;
-            font-weight: bold;
+            font-weight: 700;
+            font-family: sans-serif;
         }
         .titles{
             font-weight: bold;
-            margin-right: .5em;
+            margin-right: .17em;
+            font-family: Helvetica;
+        }
+        h1 {
+            font-family: "Comic Sans MS";
+        }
+        h2{
+            font-family: "Comic Sans MS";
         }
     </style>
 </head>
@@ -103,7 +107,7 @@
                     forecastFill += "<p><span class='titles'>Wind: </span>  " + i.speed + "</p>";
                     forecastFill += "<p><span class='titles'>Pressure: </span>  " + i.pressure + "</p>";
                     var id = "#forecast" + counter;
-                    $(id).html(forecastFill);
+                   $(id).html(forecastFill);
                     counter++;
                 });
                 var cityName = data.city.name;
