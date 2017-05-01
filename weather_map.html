@@ -123,6 +123,8 @@
             options.center.lat = lat;
             getWeather();
         });
+
+        $('body').css('background-image', 'url(../img/' + data.list[0].weather[0].main + '.gif)');
     });
 </script>
 </body>
